@@ -1,0 +1,71 @@
+/* ReadTodos.css */
+
+.list-item {
+    position: relative; /* Để sử dụng pseudo-element ::before và các lớp bên trong */
+    background-size: cover; /* Đảm bảo hình nền bao phủ toàn bộ phần tử */
+    background-repeat: no-repeat; /* Không lặp lại hình nền nếu không cần thiết */
+    background-position: center; /* Căn giữa hình nền */
+    margin-bottom: 10px; /* Thêm khoảng cách giữa các task */
+    padding: 10px; /* Thêm padding cho phần tử để tạo khoảng cách bên trong */
+    color: white; /* Đặt màu chữ thành trắng */
+    overflow: hidden; /* Để đảm bảo gradient không bị tràn ra ngoài */
+    display: flex; /* Đặt display flex để căn chỉnh các thành phần */
+    align-items: center; /* Căn giữa các thành phần theo chiều dọc */
+    justify-content: space-between; /* Căn chỉnh các phần tử ở hai bên */
+}
+
+.background-box {
+    position: absolute; /* Định vị tuyệt đối */
+    top: 0; /* Đặt ở trên cùng */
+    left: 0; /* Đặt ở bên trái */
+    width: 50%; /* Chiếm 50% chiều rộng của phần tử */
+    height: 100%; /* Chiếm toàn bộ chiều cao của phần tử */
+    background: linear-gradient(to right, rgba(0.5, 0.7, 0.9, 1), rgba(0, 0, 0, 0)); /* Gradient mờ dần từ trái sang phải */
+    z-index: 1; /* Đảm bảo lớp này nằm trên hình nền nhưng dưới text */
+}
+
+.actions {
+    display: flex; /* Đặt display flex để căn chỉnh các nút */
+    align-items: center; /* Căn giữa các nút theo chiều dọc */
+    padding-left: 40%;
+}
+
+.complete-button, .delete-button {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    z-index: 2; /* Đảm bảo các nút nằm trên lớp màu đen */
+    margin-left: 10px; /* Thêm khoảng cách giữa các nút */
+}
+
+.complete-icon, .delete-icon {
+    width: 150px;
+    height: 32px;
+}
+
+.complete-text, .delete-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: TitleFont; /* Áp dụng font 'TitleFont' */
+}
+
+.task-container {
+    flex: 1; /* Chiếm hết không gian còn lại để văn bản task không bị che phủ */
+    position: relative; /* Để văn bản task nằm trên lớp màu đen */
+    z-index: 2; /* Đảm bảo văn bản nằm trên lớp màu đen */
+}
+
+.task-text {
+    text-decoration: none; /* Đặt màu chữ thành trắng */
+    color: white; /* Đặt màu chữ thành trắng */
+    font-family: TextFont; /* Áp dụng font 'TitleFont' */
+}
+
+.task-completed {
+    text-decoration: line-through;
+}

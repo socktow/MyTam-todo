@@ -1,38 +1,25 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: 'TextFont';
+  src: url('./fonts/text.ttf') format('truetype');
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@font-face {
+  font-family: 'TitleFont';
+  src: url('./fonts/title.ttf') format('truetype');
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  font-family: 'TextFont';
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'TitleFont';
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body {
+  background-image: url('./image/background.png'); /* Đường dẫn đến hình ảnh background */
+  background-size: cover; /* Phủ kín toàn bộ trang */
+  background-repeat: no-repeat; /* Không lặp lại hình ảnh */
+  background-attachment: fixed; /* Cố định hình ảnh khi cuộn trang */
+  background-position: center; /* Căn giữa hình ảnh */
 }

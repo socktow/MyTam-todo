@@ -1,28 +1,19 @@
 import React, { useState } from "react";
 import { Input, Button } from "antd";
-import buttonAddIcon from "../image/buttonadd.png"; // Đường dẫn đến hình ảnh
-import "../App.css"; // Import file CSS của bạn
-import { createTodo } from '../api/api'; // Import the createTodo function
+import { useDispatch, useSelector } from 'react-redux';
+import { addTodo } from '../Redux/Thunk/todosThunk'; // Ensure this path is correct
+import buttonAddIcon from "../image/buttonadd.png"; // Ensure this path is correct
+import "../App.css"; // Ensure this path is correct
 
-const CreateTodo = ({ onAdd }) => {
+const CreateTodo = () => {
   const [todo, setTodo] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const dispatch = useDispatch();
+  const { loading, error } = useSelector(state => state.todos); // Adjust according to your Redux slice state
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     if (todo.trim()) {
-      setLoading(true);
-      setError(null);
-      try {
-        const newTodo = await createTodo(todo); // Create a new todo via API
-        onAdd(newTodo); // Pass the new todo to the parent component
-        setTodo("");
-      } catch (error) {
-        setError('Failed to create new todo'); // Set error message
-        console.error('Failed to create new todo', error);
-      } finally {
-        setLoading(false);
-      }
+      dispatch(addTodo(todo)); // Dispatch the addTodo action with the todo text
+      setTodo("");
     }
   };
 
@@ -36,14 +27,14 @@ const CreateTodo = ({ onAdd }) => {
       />
       <Button
         type="primary"
-        icon={<img src={buttonAddIcon} alt="Add Todo" style={{ width: "24px", height: "24px" }} />}
         onClick={handleSubmit}
-        loading={loading}
+        loading={loading} // Show loading state when the action is being processed
         style={{ display: "flex", alignItems: "center", justifyContent: "center" }}
       >
+        <img src={buttonAddIcon} alt="Add Todo" style={{ width: "24px", height: "24px", marginRight: "5px" }} />
         Add Todo
       </Button>
-      {error && <div style={{ color: "red", marginTop: "10px" }}>{error}</div>}
+      {error && <div style={{ color: "red", marginTop: "10px" }}>{error}</div>} {/* Display error message if any */}
     </div>
   );
 };
